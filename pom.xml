@@ -102,6 +102,11 @@
       <artifactId>spring-data-jpa</artifactId>
       <version>3.3.5</version>
     </dependency>
+    <dependency>
+      <groupId>jakarta.persistence</groupId>
+      <artifactId>jakarta.persistence-api</artifactId>
+      <version>3.2.0</version>
+    </dependency>
     <!-- H2 Database -->
     <!-- H2 is an open-source lightweight Java database. It can be embedded in Java applications or
     run in the client-server mode.  -->
@@ -109,7 +114,14 @@
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <version>2.3.232</version>
+      <scope>runtime</scope>
     </dependency>
+    <dependency>
+      <groupId>org.hibernate.orm</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>6.1.7.Final</version>
+    </dependency>
+
     <!-- REST Assured -->
     <!-- REST Assured is a Java library that provides a domain-specific language (DSL) for writing
     powerful, maintainable tests for RESTful APIs. It is a Java-based library that is used to test
