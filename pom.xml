@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mavor</groupId>
@@ -8,11 +9,75 @@
   <name>spring-framework-project-todos</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+    <!-- Spring Context -->
+    <!-- Spring Context provides access to configured objects like a registry (a context). It
+    inherits its features from Spring Beans and adds support for internationalization, event
+    propagation, resource loading, and the transparent creation of contexts.  -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>6.1.14</version>
+    </dependency>
+    <!-- Spring Beans -->
+    <!-- Spring Beans provides the configuration framework and basic functionality to instantiate,
+    configure, and assemble java objects.  -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>6.1.14</version>
+    </dependency>
+    <!-- Spring Core -->
+    <!-- Basic building block for Spring that in conjunction with Spring Beans provides dependency
+    injection and IoC features.  -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>6.1.14</version>
+    </dependency>
+    <!-- Spring Web -->
+    <!-- Spring webmvc contains Spring’s model-view-controller (MVC) and REST Web Services
+    implementation for web applications. It provides a clean separation between domain model code
+    and web forms and integrates with all of the other features of the Spring Framework.  -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>6.1.14</version>
+    </dependency>
+    <!-- Servlet API -->
+    <!-- Java Servlet is the foundation web specification in the Java Enterprise Platform.
+    Developers can build web applications using the Servlet API to interact with the
+    request/response workflow.  -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- JSTL -->
+    <!-- JUnit is a unit testing framework to write and run repeatable automated tests on Java. It
+    provides a robust environment to write, organize, and execute automated tests, ensuring code
+    reliability and repeatability. Its user-friendly annotations and assert methods facilitate the
+    development and running of test cases, making it a foundational tool for Java developers
+    focusing on quality assurance and test-driven development.  -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
