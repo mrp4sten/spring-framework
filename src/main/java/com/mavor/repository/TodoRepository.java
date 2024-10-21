@@ -18,7 +18,11 @@ public class TodoRepository {
 
   @Transactional
   public void save(Todo todo) {
-    entityManager.persist(todo);
+    if (todo.getId() == null) {
+      entityManager.persist(todo);
+    } else {
+      entityManager.merge(todo);
+    }
   }
 
   public List<Todo> findAll() {
@@ -27,5 +31,11 @@ public class TodoRepository {
 
   public Todo findById(Long id) {
     return entityManager.find(Todo.class, id);
+  }
+
+  @Transactional
+  public void delete(Todo todo) {
+    Todo managedTodo = entityManager.merge(todo);
+    entityManager.remove(managedTodo);
   }
 }

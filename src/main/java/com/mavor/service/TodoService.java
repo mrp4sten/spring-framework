@@ -29,4 +29,8 @@ public class TodoService {
     return todoRepository.findById(id);
   }
 
+  public void delete(Todo todo) {
+    todoRepository.delete(todo);
+  }
+
 }
