@@ -1,28 +1,30 @@
 package com.mavor;
 
-import java.sql.Date;
-
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.eclipse.jetty.ee10.servlet.ServletContextHandler;
+import org.eclipse.jetty.ee10.servlet.ServletHolder;
+import org.eclipse.jetty.server.Server;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
 
 import com.mavor.config.AppConfig;
-import com.mavor.models.Todo;
-import com.mavor.service.TodoService;
 
 public class App {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
+    AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+    context.register(AppConfig.class);
 
-    try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class)) {
-        TodoService todoService = context.getBean(TodoService.class);
+    DispatcherServlet dispatcherServlet = new DispatcherServlet(context);
 
-        Todo newTodo = new Todo("this is a title", "description for my task", new Date(System.currentTimeMillis()), false);
-        todoService.save(newTodo);
+    ServletHolder servletHolder = new ServletHolder(dispatcherServlet);
 
-        Todo newTodo2 = new Todo("this is a title 2", "description for my task 2", new Date(System.currentTimeMillis()), false);
-        todoService.save(newTodo2);
+    ServletContextHandler contextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
+    contextHandler.setContextPath("/");
+    contextHandler.addServlet(servletHolder, "/*");
 
-        todoService.findAll()
-            .forEach(todo -> System.out.println("Todo: " + todo.getTitle() + ", Completed: " + todo.isDone()));
-    }
+    Server server = new Server(8080);
+    server.setHandler(contextHandler);
+
+    server.start();
+    server.join();
   }
-
 }
