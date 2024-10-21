@@ -1,0 +1,20 @@
+meta {
+  name: Update Todo
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8080/todos/1
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Updated Todo",
+    "description": "Description of Updated todo",
+    "targetDate": "2025-12-01",
+    "done": true
+  }
+}
